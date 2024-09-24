@@ -8,6 +8,8 @@ const ProfilePage = () => {
   const { puuid, name, tag } = useParams(); // Get the PUUID, name, and tag from the URL parameters
   const [summonerData, setSummonerData] = useState(null);
   const [error, setError] = useState('');
+  const [matchHistoryRefresh, setMatchHistoryRefresh] = useState(false); // State to trigger refresh
+  const [lastRefreshed, setLastRefreshed] = useState(null); // State to store last refresh time
 
   useEffect(() => {
     const fetchSummonerData = async () => {
@@ -25,6 +27,13 @@ const ProfilePage = () => {
     }
   }, [puuid]);
 
+  const refreshMatchHistory = () => {
+    // Toggle state to trigger match history refresh
+    setMatchHistoryRefresh(prevState => !prevState);
+    // Update the last refreshed time
+    setLastRefreshed(new Date().toLocaleString());
+  };
+
   return (
     <div className="profile-container">
       <h2>Profile</h2>
@@ -40,7 +49,13 @@ const ProfilePage = () => {
           <p className="profile-level">Level: {summonerData.summonerLevel}</p>
         </div>
       )}
-      <MatchHistory puuid={puuid} />
+
+      <button className="refresh-button" onClick={refreshMatchHistory}>Refresh Match History</button>
+      <p className="last-refreshed">
+        {lastRefreshed ? `Last Refreshed: ${lastRefreshed}` : 'Not refreshed yet'}
+      </p>
+
+      <MatchHistory puuid={puuid} key={matchHistoryRefresh} /> {/* Pass the refresh state as a key to force rerender */}
     </div>
   );
 };
