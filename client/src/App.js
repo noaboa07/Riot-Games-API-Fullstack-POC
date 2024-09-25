@@ -5,6 +5,7 @@ import ProfilePage from './components/ProfilePage';
 import SlideMenu from './components/SlideMenu';
 import { LanguageProvider } from './components/LanguageContext';
 import LanguageSelector from './components/LanguageSelector';
+import NotFound from './components/NotFound'; // Assuming you have a NotFound component
 
 function App() {
   return (
@@ -12,12 +13,12 @@ function App() {
       <Router>
         <div className="app">
           <SlideMenu />
-          <LanguageSelector /> {/* Language selector dropdown */}
+          <LanguageSelector />
           <div className="content">
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/profile/:puuid/:name/:tag" element={<ProfilePage />} />
-              {/* Add other routes here */}
+              <Route path="*" element={<NotFound />} /> {/* Fallback for unmatched routes */}
             </Routes>
           </div>
         </div>

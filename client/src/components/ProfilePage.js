@@ -10,10 +10,12 @@ const ProfilePage = () => {
   const { puuid, name, tag } = useParams(); // Get the PUUID, name, and tag from the URL parameters
   const [summonerData, setSummonerData] = useState(null);
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false); // Loading state
   const [lastRefreshed, setLastRefreshed] = useState(null); // State to store last refresh time
   const { language } = useLanguage(); // Get the current language
 
   const fetchProfileData = useCallback(async () => {
+    setLoading(true); // Set loading to true
     try {
       // Fetch summoner data using PUUID
       const response = await axios.get(`/summoner/${puuid}`);
@@ -22,6 +24,8 @@ const ProfilePage = () => {
     } catch (err) {
       console.error('Error fetching summoner data:', err);
       setError(translations[language].fetchError); // Use translation for error message
+    } finally {
+      setLoading(false); // Set loading to false
     }
   }, [puuid, language]);
 
@@ -38,6 +42,7 @@ const ProfilePage = () => {
     <div className="profile-container">
       <h2>{translations[language].profilePageTitle}</h2> {/* Updated to use new key */}
       {error && <p style={{ color: 'red' }}>{error}</p>}
+      {loading && <p>Loading...</p>} {/* Loading indicator */}
       {summonerData && (
         <div>
           <h3 className="profile-name">{name} <span className="profile-tag">({tag})</span></h3>
