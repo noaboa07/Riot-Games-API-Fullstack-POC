@@ -86,3 +86,52 @@ h3 {
 li:hover .champion-icon {
   border-color: #aaa; /* Change border color of champion icon on hover */
 }
+
+
+.expanded-info {
+  padding: 15px;
+  margin: 10px 0; /* Add margin for spacing */
+  background-color: transparent; /* Keep it transparent to see parent color */
+  transition: max-height 0.3s ease, opacity 0.3s ease; /* Smooth transition for expand/collapse */
+  overflow: hidden; /* Prevent overflow during transition */
+  border: 1px solid #ddd; /* Optional: Border around the expanded section */
+  border-radius: 8px; /* Optional: Rounded corners for the expanded section */
+}
+
+.match-item {
+  cursor: pointer; /* Indicate that the list item is clickable */
+}
+
+.match-item:hover {
+  background-color: rgba(0, 0, 0, 0.342); /* Light hover effect for better user experience */
+}
+
+/* testing a few tool tip features
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer; /* Show pointer cursor 
+}
+
+.tooltiptext {
+  visibility: hidden;
+  width: 150px; 
+  background-color: #555; 
+  color: #fff; 
+  text-align: center; 
+  border-radius: 6px; 
+  padding: 5px; 
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; 
+  left: 50%;
+  margin-left: -75px; 
+  opacity: 0; 
+  transition: opacity 0.3s; 
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible; 
+  opacity: 1; 
+} */
