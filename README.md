@@ -178,4 +178,4 @@ MIT. League of Legends and Riot Games are trademarks or registered trademarks of
 
 Noah Russell  
 [LinkedIn](https://www.linkedin.com/in/noah-russell-cs/)  
-[Email](mailto:noahrussell2004@gmail.com)
+[Email](mailto:noahrusselldev@gmail.com)
